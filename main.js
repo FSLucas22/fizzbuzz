@@ -3,7 +3,7 @@ import { RULES } from './constants.js'
 
 export default function resultList(rules=RULES, evaluationMethod=evaluateOutput) {
     const results = [];
-    for (const counter = rules.start; counter <= rules.rules.end; counter++) {
+    for (let counter = rules.start; counter <= rules.end; counter++) {
         results.push(evaluationMethod(rules, counter));
     }
     return results;
@@ -11,7 +11,7 @@ export default function resultList(rules=RULES, evaluationMethod=evaluateOutput)
 
 
 function evaluateOutput(rules, index) {
-    const output = '';
+    let output = '';
     for (const keyObject of rules.keys) {
         const condition = rules.conditions[keyObject.name];
         if (condition(index)) {
